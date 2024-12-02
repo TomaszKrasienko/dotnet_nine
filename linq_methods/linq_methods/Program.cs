@@ -20,13 +20,14 @@ var personsAggregated = persons
         seed: 0m,
         (totalValue, person) => totalValue + (person.Payment * person.Experience));
 
-foreach (var personAggregate in personsAggregated)
+foreach (var personAggregate in personsAggregated.Index())
 {
-    Console.WriteLine($"{personAggregate.Key} : {personAggregate.Value}");
+    Console.WriteLine($"{personAggregate.Index + 1}: {personAggregate.Item.Key} : {personAggregate.Item.Value}");
 }
 
 //results
-//Frontend : 31200
-// Backend : 61000
+//1: Frontend : 31200
+//2: Backend : 61000
+
 
 public sealed record Person(int Id, string Name, string Job, int Payment, int Experience); 
